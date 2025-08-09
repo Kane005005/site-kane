@@ -1,0 +1,67 @@
+.quote-form-section {
+  padding: 100px 0;
+  background-color: var(--background-color);
+  text-align: center;
+}
+
+.quote-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: var(--dark-grey);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-color);
+}
+
+.form-group input[type="number"],
+.form-group select {
+  padding: 10px;
+  border: 1px solid #333;
+  background-color: #222;
+  color: var(--text-color);
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.form-group input[type="number"]:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.checkbox-group {
+  flex-direction: row;
+  align-items: center;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.estimated-price {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.estimated-price span {
+  color: var(--primary-color);
+  font-weight: 700;
+}
