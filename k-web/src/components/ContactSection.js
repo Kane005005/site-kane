@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
-import './ContactForm.css';
+// k-web/src/components/ContactSection.js
 
-const ContactForm = () => {
+import React, { useState } from 'react';
+import './ContactSection.css';
+import { FaPhone, FaWhatsapp, FaTelegramPlane, FaEnvelope } from 'react-icons/fa';
+
+const ContactSection = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('');
 
@@ -14,7 +17,8 @@ const ContactForm = () => {
     setStatus("Envoi en cours...");
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/contact/', {
+      // URL de l'API pour le formulaire de contact
+      const response = await fetch('https://kweb.pythonanywhere.com/api/contact/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -24,7 +28,7 @@ const ContactForm = () => {
 
       if (response.ok) {
         setStatus('Votre message a été envoyé avec succès !');
-        setFormData({ name: '', email: '', message: '' }); // Réinitialise le formulaire
+        setFormData({ name: '', email: '', message: '' });
       } else {
         const errorData = await response.json();
         setStatus(`Une erreur est survenue : ${JSON.stringify(errorData)}`);
@@ -36,39 +40,49 @@ const ContactForm = () => {
   };
 
   return (
-    <section className="contact-form-section">
+    <section className="contact-section" id="contact">
       <div className="container">
         <h2 className="section-title">Prenons contact</h2>
-        <form onSubmit={handleSubmit} className="contact-form">
-          <input 
-            type="text" 
-            name="name" 
-            value={formData.name} 
-            onChange={handleChange} 
-            placeholder="Votre Nom" 
-            required 
-          />
-          <input 
-            type="email" 
-            name="email" 
-            value={formData.email} 
-            onChange={handleChange} 
-            placeholder="Votre Email" 
-            required 
-          />
-          <textarea 
-            name="message" 
-            value={formData.message} 
-            onChange={handleChange} 
-            placeholder="Votre Message" 
-            required
-          ></textarea>
-          <button type="submit">Envoyer</button>
-          {status && <p className="status-message">{status}</p>}
-        </form>
+        <div className="contact-content">
+          <div className="contact-info">
+            <p>
+              Pour toute question ou demande de devis, n'hésitez pas à me contacter par téléphone,
+              email ou via mes réseaux sociaux.
+            </p>
+            <ul className="contact-list">
+              <li>
+                <a href="tel:+22395607229" className="contact-item">
+                  <FaPhone className="icon" />
+                  <span>+223 95 60 72 29</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://wa.me/22393406704?text=Bonjour K-Web, j’ai une question concernant un projet !" target="_blank" rel="noopener noreferrer" className="contact-item">
+                  <FaWhatsapp className="icon" />
+                  <span>+223 93 40 67 04</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://t.me/+22395607229" target="_blank" rel="noopener noreferrer" className="contact-item">
+                  <FaTelegramPlane className="icon" />
+                  <span>+223 95 60 72 29</span>
+                </a>
+              </li>
+              <li>
+                <a href="mailto:traorekanz@gmail.com" className="contact-item">
+                  <FaEnvelope className="icon" />
+                  <span>traorekanz@gmail.com</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <form onSubmit={handleSubmit} className="contact-form">
+            {/* ... reste du formulaire ... */}
+          </form>
+        </div>
       </div>
     </section>
   );
 };
 
-export default ContactForm;
+export default ContactSection;
