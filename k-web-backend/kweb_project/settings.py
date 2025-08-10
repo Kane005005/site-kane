@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os # Garder cette ligne de l'historique distant
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-3ck!9#d@@15xj1)n8b(f+uz5#6(9p2#m43*817$5pe#icg9cb-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['kweb.pythonanywhere.com'] # Garder cette ligne de l'historique distant
 
 
 # Application definition
@@ -41,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
 ]
-    
+ 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -51,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+ 
 ]
 # kweb_project/settings.py
 
@@ -65,13 +66,15 @@ CORS_ALLOWED_ORIGINS = [
 
 ROOT_URLCONF = 'kweb_project.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'build')], # Garder cette ligne de l'historique distant
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug', # Garder cette ligne de l'historique distant
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -79,6 +82,14 @@ TEMPLATES = [
         },
     },
 ]
+
+# ... autres paramètres
+
+# Ajouter le dossier de construction à STATICFILES_DIRS pour servir les fichiers statiques de React
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'build/static'), # Garder cette ligne de l'historique distant
+]
+
 
 WSGI_APPLICATION = 'kweb_project.wsgi.application'
 
@@ -142,7 +153,7 @@ import os
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'k-web/build/static'),
+    os.path.join(BASE_DIR, 'build/static'), # Conserver la version distante
 ]
 
 # MEDIA_URL et MEDIA_ROOT pour les images (portfolio, blog)
@@ -158,7 +169,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'traorekanz@gmail.com.com'  # <-- Remplace par ton adresse email
+EMAIL_HOST_USER = 'traorekanz@gmail.com.com' # <-- Remplace par ton adresse email
 EMAIL_HOST_PASSWORD = 'rtzs rkul stdm arbc ' # <-- Remplace par le mot de passe généré
 DEFAULT_FROM_EMAIL = 'traorekanz@gmail.com' # <-- Remplace par ton adresse email
 
