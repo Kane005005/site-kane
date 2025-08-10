@@ -67,17 +67,17 @@ ROOT_URLCONF = 'kweb_project.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
+        ...
+        'DIRS': [os.path.join(BASE_DIR, 'build')],
+        ...
     },
+]
+
+# ... autres paramètres
+
+# Ajoutez le dossier de construction à STATICFILES_DIRS pour servir les fichiers statiques de React
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'build/static'),
 ]
 
 WSGI_APPLICATION = 'kweb_project.wsgi.application'
