@@ -1,0 +1,109 @@
+/* Styles pour les grands écrans (par défaut) */
+.navbar {
+  background-color: var(--background-color);
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px; /* Assure que le contenu reste au centre */
+  margin: 0 auto;
+  padding: 0 20px; /* Ajoute un peu de marge sur les côtés */
+}
+
+.navbar-logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  margin-left: 30px;
+}
+
+.navbar-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: var(--primary-color);
+}
+
+.navbar-links .cta-button {
+  padding: 10px 20px;
+  border-radius: 50px;
+}
+
+/* Styles pour le menu mobile */
+.menu-icon {
+  display: none; /* Masqué par défaut */
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+/* Media Query pour les petits écrans (mobiles et tablettes) */
+@media (max-width: 768px) {
+  
+  .navbar-links {
+    display: none; /* Masque la navigation classique */
+  }
+
+  .menu-icon {
+    display: block; /* Affiche le bouton hamburger */
+  }
+
+  /* Le menu tiroir en position fixe */
+  .navbar-links {
+    display: flex; /* Le flex est nécessaire pour la mise en page en colonne */
+    position: fixed;
+    top: 80px; /* Commence sous la barre de navigation */
+    right: 0;
+    width: 100%;
+    max-height: 0; /* Hauteur initialement nulle */
+    overflow: hidden;
+    background-color: var(--background-color);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    transition: max-height 0.5s ease-in-out; /* Anime la hauteur */
+    z-index: 999;
+  }
+  
+  .navbar-links.active {
+    max-height: 400px; /* Hauteur du menu ouvert, tu peux ajuster si besoin */
+  }
+  
+  .navbar-links li {
+    margin: 20px 0;
+  }
+  
+  .navbar-links a {
+    font-size: 1.2rem;
+  }
+  
+  .navbar-links .cta-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}
