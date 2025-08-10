@@ -1,12 +1,14 @@
+// k-web/src/pages/ContactPage.js
+
 import React from 'react';
-import ContactForm from '../components/ContactForm';
+import ContactSection from '../components/ContactSection';
 
 const ContactPage = () => {
-  return (
-    <main style={{ paddingTop: '80px' }}>
-      <ContactForm />
-    </main>
-  );
+  return (
+    <main style={{ paddingTop: '80px' }}>
+      <ContactSection />
+    </main>
+  );
 };
 
 export default ContactPage;
