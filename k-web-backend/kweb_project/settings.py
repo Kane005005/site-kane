@@ -65,11 +65,20 @@ CORS_ALLOWED_ORIGINS = [
 
 ROOT_URLCONF = 'kweb_project.urls'
 
+
 TEMPLATES = [
     {
-        ...
-        'DIRS': [os.path.join(BASE_DIR, 'build')],
-        ...
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'build')], # Make sure there's a comma here if there's more after
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
     },
 ]
 
@@ -142,7 +151,7 @@ import os
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'k-web/build/static'),
+    os.path.join(BASE_DIR, 'build/static'),
 ]
 
 # MEDIA_URL et MEDIA_ROOT pour les images (portfolio, blog)
