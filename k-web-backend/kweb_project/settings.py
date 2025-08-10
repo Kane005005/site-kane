@@ -59,6 +59,8 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "https://kweb.pythonanywhere.com", # Ajoutez cette ligne
+    "https://www.kweb.pythonanywhere.com", 
 ]
 
 # Si tu veux autoriser toutes les origines (utile pour les tests mais non recommandé en prod)
