@@ -11,8 +11,12 @@ const BlogPostPage = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/api/blog-posts/${slug}/`);
+        // URL de l'API modifiée
+        const response = await fetch(`https://kweb.pythonanywhere.com/api/blog-posts/${slug}/`);
         if (!response.ok) {
+          if (response.status === 404) {
+            setPost(null);
+          }
           throw new Error(`Erreur HTTP: ${response.status}`);
         }
         const data = await response.json();
@@ -45,7 +49,8 @@ const BlogPostPage = () => {
       <div className="container">
         <h1 className="post-title">{post.title}</h1>
         <p className="post-date">Publié le : {new Date(post.created_at).toLocaleDateString()}</p>
-        <img src={`http://127.0.0.1:8000${post.image}`} alt={post.title} className="post-image" />
+        {/* URL de l'image modifiée */}
+        <img src={`https://kweb.pythonanywhere.com${post.image}`} alt={post.title} className="post-image" />
         <div className="post-content" dangerouslySetInnerHTML={{ __html: post.content }} />
       </div>
     </main>
