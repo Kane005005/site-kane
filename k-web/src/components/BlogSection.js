@@ -7,13 +7,14 @@ const BlogSection = () => {
   const [blogPosts, setBlogPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/blog-posts/');
+        // Changement de l'URL pour la production
+        const response = await fetch('https://kweb.pythonanywhere.com/api/blog-posts/');
         if (!response.ok) {
           throw new Error(`Erreur HTTP: ${response.status}`);
         }
@@ -40,17 +41,16 @@ const BlogSection = () => {
         <div className="blog-grid">
           {loading && <p>Chargement des articles...</p>}
           {error && <p>Une erreur est survenue : {error}</p>}
-          
+
           {!loading && !error && blogPosts.length > 0 ? (
             blogPosts.map((post, index) => (
               <div className="blog-card" key={index}>
-                <img src={`http://127.0.0.1:8000${post.image}`} alt={post.title} className="blog-image" />
+                {/* Changement de l'URL pour l'image */}
+                <img src={`https://kweb.pythonanywhere.com${post.image}`} alt={post.title} className="blog-image" />
                 <div className="blog-info">
                   <h3 className="blog-title">{post.title}</h3>
                   <p className="blog-date">{new Date(post.created_at).toLocaleDateString('fr-FR')}</p>
                   <p className="blog-summary">{post.summary}</p>
-                  
-                  {/* Utilise le composant Link pour la navigation interne */}
                   <Link to={`/blog/${post.slug}`} className="read-more-btn">Lire l'article</Link>
                 </div>
               </div>
